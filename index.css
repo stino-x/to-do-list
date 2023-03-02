@@ -1,0 +1,92 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(243, 236, 236);
+  position: relative;
+  width: 100%;
+  height: 100%;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 200;
+}
+
+table {
+  position: relative;
+  width: 60%;
+  height: 50vh;
+  margin-left: 20%;
+  margin-top: 10%;
+  box-shadow: 0.5rem 0.5rem 8px grey;
+}
+
+tbody {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.fa-solid {
+  text-align: right;
+  float: right;
+  margin-right: 5%;
+}
+
+.refresh {
+  text-align: right;
+  float: right;
+  margin-right: 5%;
+}
+
+*:focus {
+  outline: none;
+}
+
+/* span {
+  margin-right: 100%;
+} */
+
+.clear-all {
+  background-color: whitesmoke;
+  text-align: center;
+}
+
+tr::placeholder {
+  font-family: 'Open Sans', sans-serif;
+  font-style: italic;
+  display: flex;
+  row-gap: 100%;
+}
+
+tr {
+  border-bottom: 1px solid #ddd;
+  background-color: white;
+}
+
+td {
+  padding-left: 5%;
+}
+
+a {
+  text-decoration: none;
+  text-align: center;
+}
+
+input[type=checkbox] {
+  margin-right: 2%;
+}
+
+input[type="text"] {
+  width: 100%;
+  border: none;
+}
+
+/* .activity {
+  display: grid;
+  grid-template-rows: 1fr;
+
+  position: relative;
+  width: 100%;
+} */
