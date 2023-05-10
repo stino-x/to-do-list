@@ -10,22 +10,27 @@ body {
   width: 100%;
   height: 100%;
   font-family: 'Open Sans', sans-serif;
-  font-weight: 200;
+  padding: 0;
 }
 
-table {
+form {
   position: relative;
   width: 60%;
-  height: 50vh;
-  margin-left: 20%;
-  margin-top: 10%;
+  height: 100%;
+  margin: 10% auto;
   box-shadow: 0.5rem 0.5rem 8px grey;
 }
 
-tbody {
+div {
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+
+.body {
   position: relative;
   width: 100%;
   height: 100%;
+  padding: 0;
 }
 
 .fa-solid {
@@ -34,44 +39,51 @@ tbody {
   margin-right: 5%;
 }
 
-.refresh {
+#refresh {
   text-align: right;
   float: right;
-  margin-right: 5%;
+  margin-right: 3%;
+}
+
+.trash {
+  position: absolute;
+  left: 56vw;
+  right: 44vw;
 }
 
 *:focus {
   outline: none;
 }
 
-/* span {
-  margin-right: 100%;
-} */
-
 .clear-all {
-  background-color: whitesmoke;
+  background-color: rgb(207, 203, 203);
   text-align: center;
 }
 
-tr::placeholder {
+.clear-all:hover {
+  cursor: pointer;
+}
+
+.section::placeholder {
   font-family: 'Open Sans', sans-serif;
   font-style: italic;
   display: flex;
   row-gap: 100%;
 }
 
-tr {
+.section {
   border-bottom: 1px solid #ddd;
   background-color: white;
 }
 
-td {
+.td {
   padding-left: 5%;
 }
 
 a {
   text-decoration: none;
   text-align: center;
+  color: black;
 }
 
 input[type=checkbox] {
@@ -79,14 +91,67 @@ input[type=checkbox] {
 }
 
 input[type="text"] {
+  min-height: 100%;
+  margin-left: 3%;
+}
+
+input[type="text"]::placeholder {
+  position: relative;
+  left: 3%;
+}
+
+#input {
+  width: 80%;
+  border: none;
+  min-height: 3vh;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.input-area {
+  position: relative;
   width: 100%;
+  min-height: 3vh;
+}
+
+#enter {
+  position: absolute;
+  color: grey;
+  left: 56vw;
+  right: 44vw;
+}
+
+.input-area span {
+  position: relative;
+  min-height: 3vh;
+  width: 100%;
+}
+
+.input-edit {
+  position: relative;
+  width: 92%;
   border: none;
 }
 
-/* .activity {
-  display: grid;
-  grid-template-rows: 1fr;
+.completed {
+  text-decoration: line-through;
+}
 
+li {
+  list-style-type: none;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+
+button {
   position: relative;
   width: 100%;
-} */
+  min-height: 3vh;
+  border: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  outline: none;
+}
