@@ -1,0 +1,103 @@
+/* general styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #faf6f5;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  background-color: #f29c9f;
+  text-align: center;
+  padding: 1rem;
+}
+
+h1 {
+  color: white;
+}
+
+main {
+  max-width: 600px;
+  margin: 2rem auto;
+}
+
+form {
+  display: flex;
+  margin-bottom: 2rem;
+}
+
+label {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-right: 1rem;
+}
+
+input[type="text"] {
+  font-size: 1.25rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: none;
+  flex-grow: 1;
+  margin-right: 1rem;
+}
+
+button[type="submit"],
+button.clear-all {
+  font-size: 1.25rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: none;
+  background-color: #f29c9f;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button[type="submit"]:hover,
+button.clear-all:hover {
+  background-color: #f0777d;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th {
+  text-align: left;
+  font-size: 1.5rem;
+}
+
+td {
+  padding: 0.5rem;
+}
+
+.check-box {
+  margin-right: 1rem;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: #c7c7c7;
+}
+
+.fa-ellipsis-vertical {
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.edit {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input-edit {
+  font-size: 1.25rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+}

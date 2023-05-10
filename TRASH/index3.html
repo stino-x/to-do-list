@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <header>
+      <h1>To-Do List</h1>
+    </header>
+    <main>
+      <form id="form">
+        <label for="input">Add a Task:</label>
+        <input type="text" id="input" placeholder="Add to your list...">
+        <button type="submit" id="enter">Add</button>
+      </form>
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Task</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="activity-list">
+        </tbody>
+      </table>
+      <div id="actions">
+        <button class="clear-all">Clear All</button>
+        <button id="refresh"><box-icon name='refresh' type='solid' color='white' size='md'></box-icon></button>
+      </div>
+    </main>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
