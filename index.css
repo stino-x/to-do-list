@@ -13,12 +13,18 @@ body {
   padding: 0;
 }
 
-form {
+.container {
   position: relative;
   width: 60%;
   height: 100%;
   margin: 10% auto;
   box-shadow: 0.5rem 0.5rem 8px grey;
+  padding: 0;
+}
+
+form {
+  padding-top: 2%;
+  padding-bottom: 2%;
 }
 
 div {
@@ -90,6 +96,12 @@ input[type=checkbox] {
   margin-right: 2%;
 }
 
+.check-box-edit {
+  margin: 0;
+  position: absolute;
+  left: 5%;
+}
+
 input[type="text"] {
   min-height: 100%;
   margin-left: 3%;
@@ -129,8 +141,10 @@ input[type="text"]::placeholder {
 
 .input-edit {
   position: relative;
-  width: 92%;
+  width: 80%;
   border: none;
+  background-color: rgba(255, 253, 208, 1);
+  left: 8%;
 }
 
 .completed {
@@ -154,4 +168,8 @@ button {
   padding-top: 2%;
   padding-bottom: 2%;
   outline: none;
+}
+
+.edit {
+  background-color: rgba(255, 253, 208, 1);
 }

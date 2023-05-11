@@ -13,37 +13,38 @@
     <script src="https://kit.fontawesome.com/51ef778fad.js" crossorigin="anonymous"></script>
 </head>
 <body>
-        <form class="container">
+        <div class="container" type="submit">
             <div class="body">
                 <div class="section">
-                    <span class="td"> <span>Today's to Do</span> <box-icon name="refresh" id="refresh"></box-icon></span>
+                    <span class="td"> <span>Today's to Do</span> <box-icon class="refresh" name="refresh" id="refresh"></box-icon></span>
                 </div>
                 
-                <div class="section input-area ">
+                <form class="section input-area ">
                     <span><input type="text" id="input" placeholder="Add to your list..."><box-icon name="subdirectory-left" id="enter"></box-icon></span>
-                </div>
+                </form>
                 
                 <ul id="activity-list">
-                    <li class="section">
-                        <span class="activity td"><input type="checkbox" name="" class="check-box"><span>wash the dishes</span><i class="fa-solid fa-ellipsis-vertical"></i></span>
+                    <!-- <li class="section listitem">
+                        <span class="activity td"><input type="checkbox" name="" class="check-box"><span class="text">wash the dishes</span><i class="fa-solid fa-ellipsis-vertical edit"></i></span>
                     </li>
-                    <li class="section">
-                        <span class="activity td"><input type="checkbox" name="" class="check-box"><span>complete To Do list project</span> <i class="fa-solid fa-ellipsis-vertical" ></i></span>
+                    <li class="section listitem">
+                        <span class="activity td"><input type="checkbox" name="" class="check-box"><span class="text">complete To Do list project</span> <i class="fa-solid fa-ellipsis-vertical edit" ></i></span>
                     </li>
-                    <li class="section">
-                        <span class="activity edit">
+                    <li class="section edit">
+                        <span class="activity">
+                        <input type="checkbox" name="" class="check-box check-box-edit">
                         <input type="text" class="input-edit" placeholder="Add to your list...">
                         
                             <box-icon name="trash-alt" type="solid" class="trash"></box-icon>
                         
                         </span>
-                    </li>
+                    </li> -->
                 </ul>
-                <button type="button" value="Clear all completed">
+                <button type="button" class=".clear-all" value="Clear all completed">
                     Clear all completed
                 </button>
             </div>
-        </form>
-        <script src="index.js" refer></script>
+        </div>
+        <script src="script.js" refer></script>
 </body>
 </html>

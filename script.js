@@ -1,12 +1,13 @@
 const inputArea = document.querySelector('#input');
-const clearAll = document.querySelector('.clear-all');
+const Form = document.querySelector('form');
+const clearAll = document.querySelector('button');
 let activityArray = [];
 const enter = document.querySelector('#enter');
 const activitySection = document.querySelector('#activity-list');
-const edit = document.querySelector('.fa-solid');
-const deleteBTN = document.querySelector('.trash');
-const checkboxselect = document.querySelector('.check-box');
+// const edit = document.querySelector('.edit');
+// const deleteBTN = document.querySelector('.trash');
 const reFresh = document.querySelector('#refresh');
+// const inputAreaedit = document.querySelector('.input-edit');
 function MyConstructor(description, completed, index) {
   this.description = description;
   this.completed = completed;
@@ -17,72 +18,19 @@ if (localStorage.getItem('activities')) {
   activityArray = JSON.parse(localStorage.getItem('activities'));
 }
 
-export function saveTasks() {
+function saveTasks() {
   localStorage.setItem('activities', JSON.stringify(activityArray));
 }
 
-export function AddToScreen() {
+function AddToScreen() {
   activitySection.innerHTML = '';
-  activityArray.forEach((task) => {
-    if (inputArea.value !== '') {
-      const tableRow = document.createElement('tr');
-      const tableData = document.createElement('td');
-      tableData.classList.add('activity');
-      tableData.setAttribute('id', `task-${task.Index}`);
-      const checkbox = document.createElement('input');
-      checkbox.setAttribute('type', 'checkbox');
-      checkbox.setAttribute('class', 'check-box');
-      checkbox.checked = task.completed;
-      tableData.appendChild(checkbox);
-      const taskinputspan = document.createElement('span');
-      taskinputspan.innerText = `${task.description}`;
-      tableData.appendChild(taskinputspan);
-      const image = document.createElement('i');
-      image.classList.add('fa-solid fa-ellipsis-vertical');
-      tableData.appendChild(image);
-      tableRow.appendChild(tableData);
-      activitySection.appendChild(tableRow);
-    }
-    checkboxselect.addEventListener('change', () => {
-      task.completed = !task.completed;
-      document.querySelector('.activity').classList.toggle('completed', task.completed);
-      saveTasks();
-    });
-    clearAll.addEventListener('click', () => {
-      activityArray.splice(0, activityArray.length);
-      saveTasks();
-      AddToScreen();
-    });
-    edit.addEventListener('click', (e) => {
-      const tableRow = e.target.parentElement.parentElement;
-      const tableData = tableRow.firstElementChild;
-      tableData.setAttribute('class', 'activity edit');
-      tableData.classList.remove('activity');
-      const editInput = tableRow.querySelector('.check-box');
-      task.description = editInput.value.trim();
-      editInput.setAttribute('type', 'text');
-      editInput.setAttribute('class', 'input-edit');
-      editInput.removeAttribute('class', 'check-box');
-      // editInput.setAttribute('placeholder', 'Add to your list...');
-      tableData.appendChild(editInput);
-      const trashSpan = tableRow.querySelector('span');
-      trashSpan.innerText = '';
-      const trashIcon = document.createElement('box-icon');
-      trashSpan.appendChild(trashIcon);
-      trashIcon.setAttribute('name', 'trash-alt');
-      trashIcon.setAttribute('type', 'solid');
-      trashIcon.setAttribute('class', 'trash');
-      tableData.appendChild(trashSpan);
-      tableRow.appendChild(tableData);
-      const image = document.querySelector('i');
-      image.remove();
-    });
-    deleteBTN.addEventListener('click', (e) => {
-      e.target.parentElement.parentElement.remove();
-      activityArray.splice(task.Index, 1);
-      saveTasks();
-      AddToScreen();
-    });
+  let content = '';
+  activityArray.forEach((task, index) => {
+    content += `<li class="section listitem" id="${index}">
+        <span class="activity td"><input type="checkbox" name="" class="check-box" ${task.completed ? 'checked' : ''}><span class="text">${task.description}</span>
+        <i class="fa-solid fa-ellipsis-vertical"></i></span>
+    </li>`;
+    activitySection.innerHTML = content;
   });
 }
 
@@ -90,42 +38,92 @@ if (activityArray.length > 0) {
   AddToScreen();
 }
 
-export function AddtoList(task) {
+function AddtoList() {
   const description = inputArea.value.trim();
   const completed = false;
-  const Index = task.dataset.index;
+  const Index = activityArray.length + 1;
   const Object = new MyConstructor(description, completed, Index);
   activityArray.push(Object);
   saveTasks();
   AddToScreen();
 }
+Form.addEventListener('submit', (event) => {
+  if (inputArea.value !== '') {
+    event.preventDefault();
+    AddtoList();
+    saveTasks();
+    AddToScreen();
+  }
+  Form.reset();
+});
+enter.addEventListener('dblclick', () => {
+  if (inputArea.value !== '') {
+    AddtoList();
+    saveTasks();
+    AddToScreen();
+    Form.reset();
+  }
+});
+const handleCheckboxchange = (event) => {
+  const checkbox = event.target;
+  const listItem = checkbox.parentNode.parentNode;
+  const taskId = listItem.getAttribute('id');
+  activityArray[taskId].completed = checkbox.checked;
+  if (checkbox.checked) {
+    listItem.querySelector('.text').classList.add('completed');
+  } else {
+    listItem.querySelector('.text').classList.remove('completed');
+  }
+  saveTasks();
+};
+activitySection.addEventListener('change', handleCheckboxchange);
+activitySection.addEventListener('dblclick', (e) => {
+  const listItem = e.target.parentNode.parentNode;
+  if (e.target.classList.contains('fa-solid')) {
+    listItem.classList.remove('listitem');
+    listItem.classList.add('edit');
+    const taskId = listItem.getAttribute('id');
+    listItem.innerHTML = `<span class="activity">
+  <input type="checkbox" name="" class="check-box check-box-edit">
+  <input type="text" class="input-edit" value="${activityArray[taskId].description}">
+  
+      <box-icon name="trash-alt" type="solid" class="trash"></box-icon>
+  
+  </span>`;
+    listItem.querySelector('.input-edit').focus();
+  }
+});
+// ${activityArray[taskId].completed ? 'checked' : ''
 
-// Delete all checked tasks
-export function deleteCheckedTasks() {
+activitySection.addEventListener('click', (e) => {
+  if (e.target.classList.contains('trash')) {
+    const listItem = e.target.parentNode.parentNode;
+    listItem.remove();
+    const taskId = listItem.getAttribute('id');
+    activityArray.splice(activityArray[taskId + 1].index, 1);
+    saveTasks();
+    AddToScreen();
+  }
+});
+
+function deleteCheckedTasks() {
   activityArray = activityArray.filter((MyConstructor) => !MyConstructor.completed);
   saveTasks();
   AddToScreen();
 }
 
-inputArea.addEventListener('keydown', (event) => {
-  if ((event.key === 'Enter' || event.keyCode === 13) && inputArea !== '') {
-    event.preventdefault();
-    AddtoList();
-    saveTasks();
-    AddToScreen();
-  }
+clearAll.addEventListener('click', () => {
+  deleteCheckedTasks();
+  saveTasks();
+  AddToScreen();
 });
-enter.addEventListener('click', () => {
-  if (inputArea.value !== '') {
-    AddtoList();
-    saveTasks();
-    AddToScreen();
+
+document.addEventListener('click', (e) => {
+  if (e.target.classList.contains('refresh')) {
+    reFresh.setAttribute('animation', 'spin');
+    window.location.reload();
+    window.addEventListener('load', () => {
+      reFresh.setTimeout(() => reFresh.classList.remove('animation'), 4500);
+    });
   }
-});
-reFresh.addEventListener('click', () => {
-  reFresh.setAttribute('animation', 'spin');
-  window.location.reload();
-  window.addEventListener('load', () => {
-    reFresh.setTimeout(() => reFresh.classList.remove('animation'), 2500);
-  });
 });
