@@ -43,18 +43,21 @@ div {
   text-align: right;
   float: right;
   margin-right: 5%;
+  cursor: pointer;
 }
 
 #refresh {
   text-align: right;
   float: right;
   margin-right: 3%;
+  cursor: pointer;
 }
 
 .trash {
   position: absolute;
   left: 56vw;
   right: 44vw;
+  cursor: pointer;
 }
 
 *:focus {
@@ -131,6 +134,7 @@ input[type="text"]::placeholder {
   color: grey;
   left: 56vw;
   right: 44vw;
+  cursor: pointer;
 }
 
 .input-area span {
